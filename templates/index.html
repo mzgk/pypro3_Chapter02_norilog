@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatoble" content="ie=edge">
-    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
     <title>乗りログ</title>
 </head>
 <body>
@@ -43,18 +43,14 @@
             <th>日時</th>
             <th>メモ</th>
         </tr>
+        {% for ride in rides %}
         <tr>
-            <td>御嶽山</td>
-            <td>片瀬江ノ島</td>
-            <td>2017-10-31</td>
-            <td>サーフィン</td>
+            <td>{{ ride.start }}</td>
+            <td>{{ ride.finish }}</td>
+            <td>{{ ride.created_at }}</td>
+            <td>{{ ride.memo}}</td>
         </tr>
-        <tr>
-            <td>御嶽山</td>
-            <td>代々木</td>
-            <td>2017-10-31</td>
-            <td>BPStudy</td>
-        </tr>
+        {% endfor %}
     </table>
 </body>
 </html>

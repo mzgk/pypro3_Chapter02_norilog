@@ -29,3 +29,12 @@ def save_data(start, finish, memo, created_at):
     })
 
     json.dump(database, open(DATA_FILE, mode="w", encoding="utf-8"), indent=4, ensure_ascii=False)
+
+
+def load_data():
+    """記録データを返します"""
+    try:
+        database = json.load(open(DATA_FILE, mode="r", encoding="utf-8"))
+    except FileNotFoundError:
+        database = []
+    return database

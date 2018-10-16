@@ -1,7 +1,8 @@
 import json
+from datetime import datetime
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 
 
 application = Flask(__name__)
@@ -54,6 +55,19 @@ def index():
     """
     rides = load_data()
     return render_template('index.html', rides=rides)
+
+
+@application.route('/save', methods=['POST'])
+def save():
+    """記録用URL"""
+    # 送信されたデータを取得します
+    start = request.form.get('start')
+    finish = request.form.get('finish')
+    memo = request.form.get('memo')
+    created_at = datetime.now()
+    save_data(start, finish, memo, created_at)
+    # 保存後はトップページにリダイレクトします
+    return redirect('/')
 
 
 if __name__ == '__main__':
